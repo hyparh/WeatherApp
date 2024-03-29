@@ -13,11 +13,13 @@ function App() {
   const [sunriseTime, setSunriseTime] = useState(null);
   const [sunsetTime, setSunsetTime] = useState(null);
   const [pressure, setPressure] = useState(null);
+  const [icon, setIcon] = useState(null);
 
   useEffect(() => {
-    const fetchTemperature = async () => {
+    const fetchWeatherInfo = async () => {
       const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=Novi Han&appid=${API_KEY}`);
       const data = await response.json();
+      console.log(data);
 
       //temp
       const kelvinTemp = data.main.temp;
@@ -36,6 +38,10 @@ function App() {
       //humidity
       const humidity = data.main.humidity;
       setHumidity(humidity);
+
+      //weather icon
+      const icon = data.weather[0].icon;
+      setIcon(icon);
 
       //precipitation
       const weatherDescription = data.weather[0].description;
@@ -62,7 +68,7 @@ function App() {
       setSunsetTime(sunsetTimeFormatted);
     };
 
-    fetchTemperature();
+    fetchWeatherInfo();
   }, []);
 
   return (
@@ -76,6 +82,13 @@ function App() {
       {precipitationIndication && <p>{precipitationIndication}</p>}
       {sunriseTime && <p>Изгрев: {sunriseTime}</p>}
       {sunsetTime && <p>Залез: {sunsetTime}</p>}
+      {icon && (
+        <img
+          src={`https://openweathermap.org/img/wn/${icon}@2x.png`}
+          alt="Weather Icon"
+        />
+      )}
+
     </div>
   );
 };
