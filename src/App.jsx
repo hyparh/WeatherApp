@@ -72,16 +72,16 @@ function App() {
   }, []);
 
   return (
-    <div>
+    <div className="weather-info">
       <h1>Времето в Нови хан</h1>
-      {temperature && <p>Температура: {temperature}°C</p>}
-      {pressure && <p>Атмосферно налягане: {pressure} hPa</p>}
-      {windSpeed && <p>Скорост на вятъра: {windSpeed} km/h</p>}
-      {humidity && <p>Влажност: {humidity}%</p>}
-      {weatherDescription && <p>Описание на времето: {weatherDescription}</p>}
+      {temperature && <p><span style={{ color: 'blue' }}>Температура:</span> <b>{temperature}°C</b></p>}
+      {pressure && <p><span style={{ color: 'blue' }}>Атмосферно налягане:</span> <b>{pressure} hPa</b></p>}
+      {windSpeed && <p><span style={{ color: 'blue' }}>Скорост на вятъра:</span> <b>{windSpeed} km/h</b></p>}
+      {humidity && <p><span style={{ color: 'blue' }}>Влажност:</span> <b>{humidity}%</b></p>}
+      {weatherDescription && <p><span style={{ color: 'blue' }}>Описание на времето:</span> <b>{weatherDescription}</b></p>}
       {precipitationIndication && <p>{precipitationIndication}</p>}
-      {sunriseTime && <p>Изгрев: {sunriseTime}</p>}
-      {sunsetTime && <p>Залез: {sunsetTime}</p>}
+      {sunriseTime && <p><span style={{ color: 'blue' }}>Изгрев:</span> <b>{sunriseTime}</b></p>}
+      {sunsetTime && <p><span style={{ color: 'blue' }}>Залез:</span> <b>{sunsetTime}</b></p>}
       {icon && (
         <img
           src={`https://openweathermap.org/img/wn/${icon}@2x.png`}
