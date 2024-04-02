@@ -74,14 +74,14 @@ function App() {
   return (
     <div className="weather-info">
       <h1>Времето в Нови хан</h1>
-      {temperature && <p><span style={{ color: 'blue' }}>Температура:</span> <b>{temperature}°C</b></p>}
-      {pressure && <p><span style={{ color: 'blue' }}>Атмосферно налягане:</span> <b>{pressure} hPa</b></p>}
-      {windSpeed && <p><span style={{ color: 'blue' }}>Скорост на вятъра:</span> <b>{windSpeed} km/h</b></p>}
-      {humidity && <p><span style={{ color: 'blue' }}>Влажност:</span> <b>{humidity}%</b></p>}
-      {weatherDescription && <p><span style={{ color: 'blue' }}>Описание на времето:</span> <b>{weatherDescription}</b></p>}
+      {temperature && <p><span style={{ color: 'yellow' }}>Температура: </span><b><span style={{ color: 'white' }}>{temperature}°C</span></b></p>}
+      {pressure && <p><span style={{ color: 'yellow' }}>Атмосферно налягане: </span><b><span style={{ color: 'white' }}>{pressure} hPa</span></b></p>}
+      {windSpeed && <p><span style={{ color: 'yellow' }}>Скорост на вятъра: </span><b><span style={{ color: 'white' }}>{windSpeed} km/h</span></b></p>}
+      {humidity && <p><span style={{ color: 'yellow' }}>Влажност: </span><b><span style={{ color: 'white' }}>{humidity}%</span></b></p>}
+      {weatherDescription && <p><span style={{ color: 'yellow' }}>Описание на времето: </span><b><span style={{ color: 'white' }}>{weatherDescription}</span></b></p>}
       {precipitationIndication && <p>{precipitationIndication}</p>}
-      {sunriseTime && <p><span style={{ color: 'blue' }}>Изгрев:</span> <b>{sunriseTime}</b></p>}
-      {sunsetTime && <p><span style={{ color: 'blue' }}>Залез:</span> <b>{sunsetTime}</b></p>}
+      {sunriseTime && <p><span style={{ color: 'yellow' }}>Изгрев: </span><b><span style={{ color: 'white' }}>{sunriseTime}</span></b></p>}
+      {sunsetTime && <p><span style={{ color: 'yellow' }}>Залез: </span><b><span style={{ color: 'white' }}>{sunsetTime}</span></b></p>}
       {icon && (
         <img
           src={`https://openweathermap.org/img/wn/${icon}@2x.png`}

@@ -17,11 +17,10 @@ h1 {
 .weather-info p {  /* Target paragraphs within .weather-info */
   margin-bottom: 10px;
   text-align: left;
-  /* font-weight: bold; */
 }
 
 .weather-info {
-  background-color: lightgoldenrodyellow;
+  background-color: green;
   color: black;
   padding: 15px;
   border-radius: 5px;
