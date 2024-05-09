@@ -7,7 +7,6 @@ function App() {
   const [temperature, setTemperature] = useState(null);
   const [windSpeed, setWindSpeed] = useState(null);
   const [humidity, setHumidity] = useState(null);
-  const [precipitationIndication, setPrecipitationIndication] = useState(null);
   const [weatherId, setWeatherId] = useState(null);
   const [weatherDescription, setWeatherDescription] = useState(null);
   const [sunriseTime, setSunriseTime] = useState(null);
@@ -50,15 +49,6 @@ function App() {
       const weatherId = data.weather[0].id;
       setWeatherId(weatherId);
 
-      let precipitationIndication = "";
-      if (weatherId >= 500 && weatherId <= 531) {
-        precipitationIndication = "Възможно е да има валежи";
-      } else if (weatherId >= 600 && weatherId <= 622) {
-        precipitationIndication = "Възможно е да има снеговалеж";
-      }
-
-      setPrecipitationIndication(precipitationIndication);
-
       //sunrise / sunset
       const sunriseTime = data.sys.sunrise;
       const sunsetTime = data.sys.sunset;
@@ -79,7 +69,6 @@ function App() {
       {windSpeed && <p><span style={{ color: 'yellow' }}>Скорост на вятъра: </span><b><span style={{ color: 'white' }}>{windSpeed} km/h</span></b></p>}
       {humidity && <p><span style={{ color: 'yellow' }}>Влажност: </span><b><span style={{ color: 'white' }}>{humidity}%</span></b></p>}
       {weatherDescription && <p><span style={{ color: 'yellow' }}>Описание на времето: </span><b><span style={{ color: 'white' }}>{weatherDescription}</span></b></p>}
-      {precipitationIndication && <p>{precipitationIndication}</p>}
       {sunriseTime && <p><span style={{ color: 'yellow' }}>Изгрев: </span><b><span style={{ color: 'white' }}>{sunriseTime}</span></b></p>}
       {sunsetTime && <p><span style={{ color: 'yellow' }}>Залез: </span><b><span style={{ color: 'white' }}>{sunsetTime}</span></b></p>}
       {icon && (
