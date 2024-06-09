@@ -6,13 +6,19 @@ function App() {
 
   const [temperature, setTemperature] = useState(null);
   const [windSpeed, setWindSpeed] = useState(null);
+  const [windDirection, setWindDirection] = useState(null);
   const [humidity, setHumidity] = useState(null);
-  const [weatherId, setWeatherId] = useState(null);
   const [weatherDescription, setWeatherDescription] = useState(null);
   const [sunriseTime, setSunriseTime] = useState(null);
   const [sunsetTime, setSunsetTime] = useState(null);
   const [pressure, setPressure] = useState(null);
   const [icon, setIcon] = useState(null);
+
+  const getWindDirection = (deg) => {
+    const directions = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW'];
+    const index = Math.round(deg / 22.5);
+    return directions[index % 16];
+  };
 
   useEffect(() => {
     const fetchWeatherInfo = async () => {
@@ -34,6 +40,10 @@ function App() {
       const kmph = mps * 3.6;
       setWindSpeed(kmph.toFixed(0));
 
+      const deg = data.wind.deg;
+      const direction = getWindDirection(deg);
+      setWindDirection(direction);
+
       //humidity
       const humidity = data.main.humidity;
       setHumidity(humidity);
@@ -45,9 +55,6 @@ function App() {
       //precipitation
       const weatherDescription = data.weather[0].description;
       setWeatherDescription(weatherDescription);
-
-      const weatherId = data.weather[0].id;
-      setWeatherId(weatherId);
 
       //sunrise / sunset
       const sunriseTime = data.sys.sunrise;
@@ -67,6 +74,7 @@ function App() {
       {temperature && <p><span style={{ color: 'yellow' }}>Температура: </span><b><span style={{ color: 'white' }}>{temperature}°C</span></b></p>}
       {pressure && <p><span style={{ color: 'yellow' }}>Атмосферно налягане: </span><b><span style={{ color: 'white' }}>{pressure} hPa</span></b></p>}
       {windSpeed && <p><span style={{ color: 'yellow' }}>Скорост на вятъра: </span><b><span style={{ color: 'white' }}>{windSpeed} km/h</span></b></p>}
+      {windDirection && <p><span style={{ color: 'yellow' }}>Посока на вятъра: </span><b><span style={{ color: 'white' }}>{windDirection}</span></b></p>}
       {humidity && <p><span style={{ color: 'yellow' }}>Влажност: </span><b><span style={{ color: 'white' }}>{humidity}%</span></b></p>}
       {weatherDescription && <p><span style={{ color: 'yellow' }}>Описание на времето: </span><b><span style={{ color: 'white' }}>{weatherDescription}</span></b></p>}
       {sunriseTime && <p><span style={{ color: 'yellow' }}>Изгрев: </span><b><span style={{ color: 'white' }}>{sunriseTime}</span></b></p>}
