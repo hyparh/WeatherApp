@@ -11,6 +11,8 @@ function App() {
   const [weatherDescription, setWeatherDescription] = useState(null);
   const [sunriseTime, setSunriseTime] = useState(null);
   const [sunsetTime, setSunsetTime] = useState(null);
+  const [dayLength, setDayLength] = useState(null);
+  const [nightLength, setNightLength] = useState(null);
   const [pressure, setPressure] = useState(null);
   const [icon, setIcon] = useState(null);
   const [error, setError] = useState(null);
@@ -75,6 +77,18 @@ function App() {
         setSunriseTime(sunriseTimeFormatted);
         setSunsetTime(sunsetTimeFormatted);
 
+        // Calculate day length
+        const dayLengthSeconds = sunsetTime - sunriseTime;
+        const hours = Math.floor(dayLengthSeconds / 3600);
+        const minutes = Math.floor((dayLengthSeconds % 3600) / 60);
+        setDayLength(`${hours}ч ${minutes}мин`);
+
+        // Calculate night length (24 hours - day length)
+        const nightLengthSeconds = 86400 - dayLengthSeconds;
+        const nightHours = Math.floor(nightLengthSeconds / 3600);
+        const nightMinutes = Math.floor((nightLengthSeconds % 3600) / 60);
+        setNightLength(`${nightHours}ч ${nightMinutes}мин`);
+
         setError(null);
       } catch (err) {
         console.error(err);
@@ -97,6 +111,8 @@ function App() {
       {weatherDescription && <p><span style={{ color: 'yellow' }}>Описание на времето: </span><b><span style={{ color: 'white' }}>{weatherDescription}</span></b></p>}
       {sunriseTime && <p><span style={{ color: 'yellow' }}>Изгрев: </span><b><span style={{ color: 'white' }}>{sunriseTime}</span></b></p>}
       {sunsetTime && <p><span style={{ color: 'yellow' }}>Залез: </span><b><span style={{ color: 'white' }}>{sunsetTime}</span></b></p>}
+      {dayLength && <p><span style={{ color: 'yellow' }}>Продължителност на деня: </span><b><span style={{ color: 'white' }}>{dayLength}</span></b></p>}
+      {nightLength && <p><span style={{ color: 'yellow' }}>Продължителност на нощта: </span><b><span style={{ color: 'white' }}>{nightLength}</span></b></p>}
       {icon && (
         <img
           src={`https://openweathermap.org/img/wn/${icon}@2x.png`}
